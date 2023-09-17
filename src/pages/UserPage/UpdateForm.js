@@ -15,7 +15,9 @@ const UpdateForm = ({ user }) => {
 
   const userSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
-    fullname: Yup.string().min(5).max(20).required('Required')
+    fullname: Yup.string().min(3).max(20).required('Required'),
+    address: Yup.string().min(2).max(20).required('Required'),
+    city: Yup.string().min(2).max(20).required('Required'),
   })
 
 
@@ -46,7 +48,8 @@ const UpdateForm = ({ user }) => {
           fullname: val.fullname,
           shippingAddress: {
             address: val.address,
-            city: val.city
+            city: val.city,
+            isEmpty: false
           }
         }));
 

@@ -74,7 +74,7 @@ const Header = () => {
           <div className="space-x-5">
 
 
-            <NavLink to='/user/login'>About</NavLink>
+            <NavLink to='/user/cart'>Cart</NavLink>
             <NavLink to='/user/login'>Contact</NavLink>
             {userInfo === null && <NavLink to='/user/login'>Login</NavLink>}
 

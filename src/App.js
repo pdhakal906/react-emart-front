@@ -13,6 +13,7 @@ import UserRoutes from './components/UserRoutes';
 import CheckoutPage from './pages/auths/CheckoutPage';
 import Shipping from './pages/auths/Shipping';
 import UserProfile from './pages/UserPage/UserProfile';
+import OrderPage from './pages/UserPage/OrderPage';
 
 const App = () => {
   return (
@@ -21,19 +22,21 @@ const App = () => {
         <Route element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path='product/detail/:id' element={<ProductDetail />} />
-
+          <Route path='user/cart' element={<CartPage />} />
 
 
           <Route element={<AuthRoutes />}>
             <Route path='user/login' element={<Login />} />
             <Route path='user/signup' element={<SignUp />} />
+
           </Route>
 
           <Route element={<UserRoutes />} >
-            <Route path='user/cart' element={<CartPage />} />
+
             <Route path='user/checkout' element={<CheckoutPage />} />
             <Route path='user/shipping' element={<Shipping />} />
             <Route path='user/profile' element={<UserProfile />} />
+            <Route path='user/orderDetail/:id' element={<OrderPage />} />
 
           </Route>
 
