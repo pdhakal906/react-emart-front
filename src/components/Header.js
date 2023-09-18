@@ -123,7 +123,7 @@ const Header = () => {
 
                         case 'Product List':
 
-                          // nav('/products/all');
+                          nav('/products/all');
                           closeMenu();
                           break;
                         case 'My Profile':

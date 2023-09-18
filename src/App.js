@@ -14,6 +14,8 @@ import CheckoutPage from './pages/auths/CheckoutPage';
 import Shipping from './pages/auths/Shipping';
 import UserProfile from './pages/UserPage/UserProfile';
 import OrderPage from './pages/UserPage/OrderPage';
+import AdminRoutes from './components/AdminRoutes';
+import ProductList from './pages/AdminPage/ProductList';
 
 const App = () => {
   return (
@@ -38,6 +40,10 @@ const App = () => {
             <Route path='user/profile' element={<UserProfile />} />
             <Route path='user/orderDetail/:id' element={<OrderPage />} />
 
+          </Route>
+
+          <Route element={<AdminRoutes />} >
+            <Route path='products/all' element={<ProductList />} />
           </Route>
 
         </Route>
