@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGetUserOrderQuery } from '../../features/order/orderApi'
+import { useDeleteOrderByIdMutation, useGetUserOrderQuery } from '../../features/order/orderApi'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Button, Card, Dialog, DialogBody, DialogFooter, DialogHeader, IconButton, Tooltip, Typography } from '@material-tailwind/react';
@@ -7,15 +7,27 @@ import { Button, Card, Dialog, DialogBody, DialogFooter, DialogHeader, IconButto
 import { useGetuserProfileQuery } from '../../features/auth/authApi';
 import UpdateForm from './UpdateForm';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { toast } from 'react-toastify';
 
 const UserProfile = () => {
   const { userInfo } = useSelector((store) => store.userInfo);
   const { data, isLoading, isError, error } = useGetUserOrderQuery(userInfo.token);
   const { data: userData, isLoading: load, isError: isE, error: err } = useGetuserProfileQuery(userInfo.token);
+  const [deleteOrder, { isLoading: loadd }] = useDeleteOrderByIdMutation();
   const nav = useNavigate();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
+  const handleDelete = async (query) => {
+    try {
+      await deleteOrder(query).unwrap();
+      toast.success("Order Cancelled Sucessfully")
+
+    } catch (err) {
+      toast.error(error)
+    }
+
+  }
 
 
 
@@ -74,11 +86,10 @@ const UserProfile = () => {
                         </Button>
                         <Button variant="gradient" color="green" onClick={() => {
                           console.log('xxx')
-                          // handleDelete({
-                          //   id: _id,
-                          //   token: userInfo.token,
-                          //   imagePath: product_image
-                          // });
+                          handleDelete({
+                            id: order._id,
+                            token: userInfo.token
+                          });
                           handleOpen();
 
                         }}>
